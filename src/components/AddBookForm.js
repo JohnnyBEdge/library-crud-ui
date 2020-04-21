@@ -50,8 +50,7 @@ class AddBookForm extends React.Component{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify([this.state])
-        }).then(this.props.getBooks)
-            
+        }).then(this.props.refresh)     
     };
 
     render(){

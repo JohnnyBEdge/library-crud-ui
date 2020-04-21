@@ -1,5 +1,6 @@
 import React from 'react';
 import AddBookForm from './AddBookForm'
+import Book from './Book';
 
 class Books extends React.Component{
     constructor(props){
@@ -7,6 +8,7 @@ class Books extends React.Component{
         this.state = {
             books: []
         }
+        this.getBooks = this.getBooks.bind(this);
     }
 
     getBooks(){
@@ -19,18 +21,23 @@ class Books extends React.Component{
         this.getBooks();
     };
 
+    
+
     render(){
 
         const book = this.state.books.map(book =>
-            <ul>
-                <li>{book.title}</li>
-            </ul>
+            
+            <li key={book._id}><Book book={book} getBooks={this.getBooks} /></li>
+            
         );
 
         return(
             <>
-                <AddBookForm />
-                {book}
+                <AddBookForm refresh={this.getBooks}/>
+                <ul>
+                    {book}
+                </ul>
+
             </>
             
         );
